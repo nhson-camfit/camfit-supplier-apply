@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>캠핏 체험 공급사 입점 신청</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #2ECC71;
+    --green-dark: #27AE60;
+    --green-light: #E8F8EF;
+    --text: #1A1A1A;
+    --text-sub: #666;
+    --border: #E5E5E5;
+    --bg-soft: #F5F7F6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text);
+    line-height: 1.6;
+    background: #fff;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+  /* Header */
+  header {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .logo img { height: 28px; display: block; }
+
+  /* Hero */
+  .hero {
+    padding: 72px 0 48px;
+    text-align: center;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--green-light);
+    color: var(--green-dark);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+  }
+  .hero h1 .accent { color: var(--green); }
+  .hero p {
+    font-size: 17px;
+    color: var(--text-sub);
+    line-height: 1.7;
+  }
+
+  /* Section */
+  section { padding: 56px 0; }
+  .section-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.3px;
+  }
+  .section-title .accent { color: var(--green); }
+  .section-sub {
+    text-align: center;
+    color: var(--text-sub);
+    font-size: 15px;
+    margin-bottom: 36px;
+  }
+
+  /* Trust indicators */
+  .trust-hero {
+    background: var(--bg-soft);
+    padding: 48px 0;
+    text-align: center;
+  }
+  .trust-hero h2 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+  .trust-hero h2 .accent { color: var(--green); }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .stat-grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .stat-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 28px 24px;
+    text-align: left;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .stat-icon {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+  .stat-label {
+    font-size: 13px;
+    color: var(--text-sub);
+    margin-bottom: 4px;
+  }
+  .stat-growth {
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+  }
+  .stat-value {
+    font-size: 15px;
+    color: var(--green-dark);
+    font-weight: 600;
+  }
+  .stat-from {
+    font-size: 12px;
+    color: #AAA;
+    margin-top: 2px;
+  }
+
+  /* Process */
+  .process {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    gap: 12px;
+    margin-top: 8px;
+    align-items: center;
+  }
+  .process-step {
+    text-align: center;
+    padding: 28px 16px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    position: relative;
+  }
+  .process-arrow {
+    font-size: 28px;
+    color: var(--green);
+    font-weight: 700;
+    text-align: center;
+  }
+  .process-num {
+    width: 32px; height: 32px;
+    background: var(--green);
+    color: #fff;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    margin: 0 auto 10px;
+    font-size: 14px;
+  }
+  .process-label {
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+  .process-desc {
+    font-size: 12px;
+    color: var(--text-sub);
+    line-height: 1.5;
+  }
+
+  /* About */
+  .about-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 8px;
+  }
+  .about-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 22px;
+  }
+  .about-icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+  .about-title { font-weight: 700; font-size: 16px; margin-bottom: 6px; }
+  .about-desc { font-size: 14px; color: var(--text-sub); line-height: 1.6; }
+
+  .about-lead {
+    text-align: center;
+    font-size: 17px;
+    color: var(--text);
+    line-height: 1.8;
+    margin-bottom: 36px;
+    padding: 0 20px;
+  }
+  .about-lead .accent { color: var(--green); font-weight: 700; }
+
+  /* Benefits */
+  .benefits {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .benefit {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 20px;
+  }
+  .benefit-icon { font-size: 24px; margin-bottom: 10px; }
+  .benefit-title { font-weight: 700; font-size: 15px; margin-bottom: 6px; }
+  .benefit-desc { font-size: 13px; color: var(--text-sub); line-height: 1.6; }
+
+  /* Form */
+  .form-section {
+    border-top: 1px solid var(--border);
+    padding-top: 56px;
+  }
+  .form-title {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+  }
+  .form-sub {
+    color: var(--text-sub);
+    font-size: 14px;
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .field { margin-bottom: 24px; }
+  .field label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  .field label .req { color: #E74C3C; margin-left: 2px; }
+  .field input, .field select, .field textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    background: #fff;
+    transition: border-color 0.15s;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    outline: none;
+    border-color: var(--green);
+  }
+  .field textarea { resize: vertical; min-height: 96px; }
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .field-hint {
+    font-size: 12px;
+    color: var(--text-sub);
+    margin-top: 4px;
+  }
+
+  .field-group-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--green-dark);
+    margin: 32px 0 16px;
+    padding-top: 20px;
+    border-top: 1px dashed var(--border);
+  }
+  .field-group-title:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+
+  .privacy {
+    background: var(--bg-soft);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 12px;
+    font-size: 13px;
+  }
+  .privacy ul { list-style: none; padding-left: 0; }
+  .privacy li {
+    padding: 3px 0;
+    color: var(--text-sub);
+  }
+  .privacy li::before { content: "• "; color: var(--green); margin-right: 4px; }
+  .privacy-agree {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    font-size: 14px;
+  }
+  .privacy-agree input[type="checkbox"] {
+    width: 18px; height: 18px;
+    accent-color: var(--green);
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 16px;
+    background: var(--text);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 16px;
+    transition: background 0.15s;
+    font-family: inherit;
+  }
+  .submit-btn:hover { background: var(--green); }
+
+  footer {
+    padding: 40px 0;
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-sub);
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+  }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 26px; }
+    .stat-grid, .stat-grid-3 { grid-template-columns: 1fr; }
+    .process { grid-template-columns: 1fr; }
+    .process-arrow { transform: rotate(90deg); }
+    .benefits { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; }
+    .field-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="logo">
+      <img src="camfit-logo.jpg" alt="CAMFIT" />
+    </div>
+  </div>
+</header>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="container">
+    <span class="hero-badge">체험 공급사 모집</span>
+    <h1>캠퍼 가족과 만나는<br/><span class="accent">체험 공급사</span>를 찾습니다</h1>
+    <p>
+      국내 최대 캠핑 플랫폼 캠핏과 함께<br/>
+      어린이·가족 대상 체험 프로그램을 운영해보세요.
+    </p>
+  </div>
+</div>
+
+<!-- About: 캠핏 체험이란 -->
+<section>
+  <div class="container">
+    <h2 class="section-title">캠핏 <span class="accent">체험</span>이란?</h2>
+    <p class="section-sub">캠핑장에서 진행하는 체험 프로그램 중개 서비스</p>
+    <p class="about-lead">
+      캠핏이 <span class="accent">전국 1,400여개 캠핑장</span>과 체험 공급사를 연결합니다.<br/>
+      공급사는 <span class="accent">프로그램 운영에만 집중</span>하시면 됩니다.<br/>
+      장소 섭외·고객 모집·홍보는 캠핏이 담당합니다.
+    </p>
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="about-icon">🏕️</div>
+        <div class="about-title">캠핑장 매칭</div>
+        <div class="about-desc">전국 1,400여개 캠핑장 네트워크에서 프로그램에 맞는 장소를 배정합니다.</div>
+      </div>
+      <div class="about-card">
+        <div class="about-icon">📣</div>
+        <div class="about-title">캠퍼 모집</div>
+        <div class="about-desc">앱 노출, 앱푸시, 알림톡, 문자로 600만 캠퍼에게 직접 모집합니다.</div>
+      </div>
+      <div class="about-card">
+        <div class="about-icon">🎨</div>
+        <div class="about-title">공급사가 진행</div>
+        <div class="about-desc">캠핑장 내에서 프로그램 운영만 집중. 매주 토요일 기본 운영.</div>
+      </div>
+      <div class="about-card">
+        <div class="about-icon">💰</div>
+        <div class="about-title">회당 공급가 정산</div>
+        <div class="about-desc">정해진 공급가를 회차별로 정산. 참여 인원 리스크 없이 안정적 수령.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust: platform stats -->
+<section class="trust-hero">
+  <div class="container">
+    <h2><span class="accent">캠핑예약업계 1위</span>, 국내 캠퍼 80%가 사용하는 필수 앱</h2>
+    <div class="stat-grid stat-grid-3">
+      <div class="stat-card">
+        <div class="stat-icon">⛺️</div>
+        <div class="stat-label">제휴 캠핑장</div>
+        <div class="stat-growth">1,400<span style="font-size:18px;font-weight:700;">여개</span></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">👥</div>
+        <div class="stat-label">연간 활성 유저</div>
+        <div class="stat-growth">600<span style="font-size:18px;font-weight:700;">만명</span></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">📈</div>
+        <div class="stat-label">거래액</div>
+        <div class="stat-growth">1,500<span style="font-size:18px;font-weight:700;">억원</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Benefits -->
+<section>
+  <div class="container">
+    <h2 class="section-title"><span class="accent">공급사 혜택</span></h2>
+    <p class="section-sub">체험 기획에만 집중하세요. 나머지는 캠핏이 합니다.</p>
+    <div class="benefits">
+      <div class="benefit">
+        <div class="benefit-icon">💸</div>
+        <div class="benefit-title">비용 부담 0원</div>
+        <div class="benefit-desc">장소 대여·고객 모집·홍보 비용 모두 캠핏이 부담. 공급사는 운영만 집중.</div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">📣</div>
+        <div class="benefit-title">무료 마케팅 노출</div>
+        <div class="benefit-desc">앱푸시·알림톡·문자로 600만 캠퍼에게 오가닉 도달. 유료광고 비용 0원.</div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">🛡️</div>
+        <div class="benefit-title">최소인원 보장</div>
+        <div class="benefit-desc">MOQ 미달 시 D-7 자동 취소. 진행되는 회차만 운영합니다.</div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">📸</div>
+        <div class="benefit-title">포트폴리오 축적</div>
+        <div class="benefit-desc">실제 운영을 통해 후기·사진·레퍼런스를 쌓아 다음 기회로 연결됩니다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Process -->
+<section style="background: var(--bg-soft);">
+  <div class="container">
+    <h2 class="section-title">입점 <span class="accent">프로세스</span></h2>
+    <p class="section-sub">신청부터 첫 운영까지 평균 2~3주 소요</p>
+    <div class="process">
+      <div class="process-step">
+        <div class="process-num">1</div>
+        <div class="process-label">신청</div>
+        <div class="process-desc">아래 폼 제출</div>
+      </div>
+      <div class="process-arrow">→</div>
+      <div class="process-step">
+        <div class="process-num">2</div>
+        <div class="process-label">심사</div>
+        <div class="process-desc">내부 검토 (3영업일)</div>
+      </div>
+      <div class="process-arrow">→</div>
+      <div class="process-step">
+        <div class="process-num">3</div>
+        <div class="process-label">매칭·운영</div>
+        <div class="process-desc">캠핑장 배정·오픈</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Form -->
+<section>
+  <div class="container">
+    <div class="form-section">
+      <div class="form-title">입점 신청서</div>
+      <div class="form-sub">* 표시는 필수 항목입니다</div>
+
+      <form id="applyForm">
+        <div class="field-group-title">공급사 정보</div>
+
+        <div class="field">
+          <label>업체명 <span class="req">*</span></label>
+          <input type="text" name="companyName" required />
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>대표자명 <span class="req">*</span></label>
+            <input type="text" name="ceoName" required />
+          </div>
+          <div class="field">
+            <label>담당자명</label>
+            <input type="text" name="managerName" />
+            <div class="field-hint">대표자와 다른 경우</div>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>연락처 <span class="req">*</span></label>
+            <input type="tel" name="phone" placeholder="010-0000-0000" required />
+          </div>
+          <div class="field">
+            <label>이메일 <span class="req">*</span></label>
+            <input type="email" name="email" required />
+          </div>
+        </div>
+
+        <div class="field-group-title">프로그램 정보</div>
+
+        <div class="field">
+          <label>체험 프로그램명 <span class="req">*</span></label>
+          <input type="text" name="programName" required />
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>카테고리 <span class="req">*</span></label>
+            <select name="category" required>
+              <option value="">선택하세요</option>
+              <option>과학·공학</option>
+              <option>자연·생태</option>
+              <option>동물·교감</option>
+              <option>공예·미술</option>
+              <option>요리·베이킹</option>
+              <option>스포츠·액티비티</option>
+              <option>음악·공연</option>
+              <option>기타</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>대상 연령 <span class="req">*</span></label>
+            <input type="text" name="ageRange" placeholder="예: 6~12세" required />
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>최대 수용 인원 <span class="req">*</span></label>
+            <input type="number" name="maxCapacity" placeholder="명" required />
+          </div>
+          <div class="field">
+            <label>소요 시간 <span class="req">*</span></label>
+            <input type="text" name="duration" placeholder="예: 60분" required />
+          </div>
+        </div>
+
+        <div class="field">
+          <label>공급가 (1회 기준) <span class="req">*</span></label>
+          <input type="text" name="supplyPrice" placeholder="예: 500,000원" required />
+          <div class="field-hint">최소 운영 인원 기준 1회 운영 공급가</div>
+        </div>
+
+        <div class="field">
+          <label>프로그램 소개 <span class="req">*</span></label>
+          <textarea name="description" placeholder="어떤 체험인지, 어린이·가족이 무엇을 경험하게 되는지 소개해주세요" required></textarea>
+        </div>
+
+        <div class="field">
+          <label>활동 가능 지역 <span class="req">*</span></label>
+          <input type="text" name="region" placeholder="예: 수도권, 강원 전역" required />
+        </div>
+
+        <div class="field">
+          <label>포트폴리오 / 참고 URL</label>
+          <input type="url" name="portfolio" placeholder="https://" />
+          <div class="field-hint">홈페이지, 인스타그램, 이전 체험 후기 등</div>
+        </div>
+
+        <div class="field-group-title">기타</div>
+
+        <div class="field">
+          <label>인입 경로 <span class="req">*</span></label>
+          <select name="source" required>
+            <option value="">선택하세요</option>
+            <option>캠핏 담당자 연락</option>
+            <option>지인 추천</option>
+            <option>SNS·커뮤니티</option>
+            <option>검색</option>
+            <option>기타</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>추가 문의사항</label>
+          <textarea name="memo"></textarea>
+        </div>
+
+        <div class="privacy">
+          <strong style="font-size:13px;">개인정보 수집·이용 동의 <span class="req">*</span></strong>
+          <ul style="margin-top:8px;">
+            <li>수집 목적: 캠핏 체험 공급사 입점 심사 및 연락</li>
+            <li>수집 항목: 업체명, 대표자명, 담당자명, 연락처, 이메일, 프로그램 정보</li>
+            <li>보유 기간: 입점 심사 완료 후 90일 (입점 확정 시 계약 기간까지)</li>
+          </ul>
+          <div class="privacy-agree">
+            <input type="checkbox" id="agree" required />
+            <label for="agree">위 내용에 동의합니다 (필수)</label>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn">입점 신청하기</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    © CAMFIT · 체험 공급사 입점 문의: contact@nextedition.co.kr
+  </div>
+</footer>
+
+<script>
+  // GAS 배포 후 URL 입력 (예: https://script.google.com/macros/s/XXXXX/exec)
+  const GAS_URL = 'https://script.google.com/macros/s/AKfycbwRGn1Lbc3W7vYl2bNw74xwqx_XCYbaFUAty-t7TIXh0bP5aMIKhX5WyhmJVyOuCruQpg/exec';
+
+  const form = document.getElementById('applyForm');
+  const submitBtn = form.querySelector('.submit-btn');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    if (!GAS_URL) {
+      alert('아직 백엔드가 연결되지 않았습니다. (GAS_URL 미설정)');
+      return;
+    }
+
+    const agreed = form.querySelector('#agree').checked;
+    if (!agreed) { alert('개인정보 수집·이용에 동의해주세요.'); return; }
+
+    const formData = new FormData(form);
+    const body = new URLSearchParams();
+    for (const [k, v] of formData.entries()) body.append(k, v);
+
+    submitBtn.disabled = true;
+    submitBtn.innerText = '제출 중...';
+
+    try {
+      const res = await fetch(GAS_URL, {
+        method: 'POST',
+        body: body
+      });
+      const json = await res.json();
+      if (!json.ok) throw new Error(json.error || '제출 실패');
+
+      form.innerHTML = `
+        <div style="text-align:center; padding:60px 20px;">
+          <div style="font-size:48px; margin-bottom:16px;">✅</div>
+          <div style="font-size:22px; font-weight:800; margin-bottom:12px;">신청이 접수되었습니다</div>
+          <div style="color:var(--text-sub); line-height:1.7;">
+            내부 검토 후 3영업일 이내 담당자가 연락드립니다.<br/>
+            문의: contact@nextedition.co.kr
+          </div>
+        </div>`;
+      window.scrollTo({ top: form.getBoundingClientRect().top + window.scrollY - 40, behavior: 'smooth' });
+    } catch (err) {
+      alert('제출 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.\n\n' + err.message);
+      submitBtn.disabled = false;
+      submitBtn.innerText = '입점 신청하기';
+    }
+  });
+</script>
+</body>
+</html>
